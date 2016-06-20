@@ -8,7 +8,11 @@ import {
     TouchableHighlight
 } from 'react-native';
 
-const APP_ID = 'E26A8ED5-6B79-4AD7-91CC-F6866A7C1169';
+// Personal token
+// const APP_ID = 'E26A8ED5-6B79-4AD7-91CC-F6866A7C1169';
+
+// From sendbird tut
+const APP_ID = 'A7A2672C-AD11-11E4-8DAA-0A18B21C2D82';
 
 export default class Login extends React.Component{
 
