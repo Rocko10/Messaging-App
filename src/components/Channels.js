@@ -32,12 +32,14 @@ export default class Channels extends React.Component{
         this.onChannelPress = this.onChannelPress.bind(this);
     }
 
+    /*First thing to do after the component is mounted is obtain all the channels*/
     componentWillMount(){
 
         this.getChannelList(1);
 
     }
 
+    /*Get all the channels according to the APP_ID connected*/
     getChannelList(page){
 
         if(page == 0){ return; }
@@ -63,6 +65,7 @@ export default class Channels extends React.Component{
 
     }
 
+    /*When a channel is selected, it joins to it, and render a new component*/
     onChannelPress(url){
 
         Sendbird.joinChannel(url, {
@@ -74,7 +77,26 @@ export default class Channels extends React.Component{
                     successFunc: data => {
 
                         Sendbird.getChannelInfo(channel => {
-                            console.log(channel);
+
+                            /*
+                            When user select a channel from the list, it connects and
+                            redirect to the component Chat
+                            */
+                            Sendbird.connect({
+                                successFunc: data => {
+
+                                    this.props.navigator.push({
+                                        name: 'chat'
+                                    });
+
+                                },
+                                errorFunc: (status, error) => {
+
+                                    console.log('[Error connect channel]: ' + error);
+
+                                }
+                            });
+
                         });
 
                     },
@@ -93,6 +115,7 @@ export default class Channels extends React.Component{
 
     }
 
+    /*When a channel is selected, connect to it, and render the component Chat*/
     _renderRow(rowData){
 
         return (
