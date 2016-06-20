@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import Login from './components/Login.js';
+import Channels from './components/Channels.js';
 import {
   StyleSheet,
   Text,
@@ -17,7 +18,11 @@ export default class chatApp extends Component {
 
         switch(route.name){
             case 'login':
-                return (<Login />);
+                return (<Login navigator={navigator}/>);
+            break;
+
+            case 'channels':
+                return (<Channels />);
             break;
         }
 

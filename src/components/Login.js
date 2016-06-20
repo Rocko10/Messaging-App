@@ -8,6 +8,8 @@ import {
     TouchableHighlight
 } from 'react-native';
 
+const APP_ID = 'E26A8ED5-6B79-4AD7-91CC-F6866A7C1169';
+
 export default class Login extends React.Component{
 
     constructor(props){
@@ -18,12 +20,40 @@ export default class Login extends React.Component{
         };
 
         this.login = this.login.bind(this);
+        this._successLogin = this._successLogin.bind(this);
+        this._errorLogin = this._errorLogin.bind(this);
+
+    }
+
+    _successLogin(data){
+
+        this.props.navigator.push({
+            name: 'channels'
+        });
+
+    }
+
+    _errorLogin(status, error){
+
+        console.log('[Error Sendbird Login]');
+        console.log(error);
+        this.setState({
+            username: ''
+        });
 
     }
 
     login(){
 
-        console.log('Login...' + this.state.username);
+        Sendbird.init({
+            app_id: APP_ID,
+            guest_id: this.state.username,
+            user_name: this.state.username,
+            image_url: '',
+            access_token: '',
+            successFunc: this._successLogin,
+            errorFunc: this._errorLogin
+        });
 
     }
 
