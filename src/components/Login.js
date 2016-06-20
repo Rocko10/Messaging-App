@@ -1,4 +1,5 @@
 import React from 'react';
+import Sendbird from 'sendbird';
 import {
     View,
     Text,
@@ -13,14 +14,16 @@ export default class Login extends React.Component{
         super(props);
 
         this.state = {
-            text: null
+            username: null
         };
+
+        this.login = this.login.bind(this);
 
     }
 
     login(){
 
-        console.log('Login...');
+        console.log('Login...' + this.state.username);
 
     }
 
@@ -29,8 +32,8 @@ export default class Login extends React.Component{
             <View style={styles.container}>
 
                 <TextInput
-                onChangeText={ text => {this.setState({text: text})} }
-                value={this.state.text}
+                onChangeText={ text => {this.setState({username: text})} }
+                value={this.state.username}
                 placeholder='Nickname'/>
 
                 <TouchableHighlight
