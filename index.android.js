@@ -1,28 +1,7 @@
-import React, { Component } from 'react';
-import {
-  AppRegistry,
-  StyleSheet,
-  Text,
-  View
-} from 'react-native';
+/*
+    Messaging app using Sendbird SDK
+*/
+import {AppRegistry} from 'react-native';
+import Main from './src/main.js';
 
-class chatApp extends Component {
-    render() {
-        return (
-            <View style={styles.container}>
-
-            </View>
-        );
-    }
-}
-
-const styles = StyleSheet.create({
-    container: {
-        flex: 1,
-        justifyContent: 'center',
-        alignItems: 'center',
-        backgroundColor: '#F5FCFF',
-    }
-});
-
-AppRegistry.registerComponent('chatApp', () => chatApp);
+AppRegistry.registerComponent('chatApp', () => Main);
